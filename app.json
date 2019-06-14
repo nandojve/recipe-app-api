@@ -1,0 +1,22 @@
+{
+  "name": "Peregrine Gestão de Clientes: Python",
+  "description": "A barebones Python app, which can easily be deployed to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://git.heroku.com/peregrine-recipe-app-api.git",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "The secret key for the Django application.",
+      "generator": "(uq77eqt+vk$2if+6cq9c)3%^6ckd+ka!7xh5z_q+t0rmolc0a"
+    }
+  },
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python manage.py collectstatic --noinput",
+        "test": "python manage.py test"
+      }
+    }
+  }
+}
