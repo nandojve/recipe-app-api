@@ -127,11 +127,6 @@ INSTALLED_APPS = [
     # Apps
     'leaflet',
     'bootstrapform',
-    'clients',
-    'products',
-    'sales',
-    'reporter',
-    'home',
 
     # Debug
     'debug_toolbar',

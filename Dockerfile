@@ -1,19 +1,30 @@
-FROM python:3.7-alpine
+FROM debian:buster
 MAINTAINER Peregrine Consultoria e Serviços LTDA
 
 ENV PYTHONUNBUFFERED 1
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update
 
 # build-dep: dependencies
-RUN apk add gcc musl-dev python3-dev
+RUN apt install -y apt-utils gcc python3-dev
+
+# postgis dependencies
+RUN apt install -y libgeos-dev libproj-dev gdal-bin
 
 # cryptography dependends + build-dep
-RUN apk add libffi-dev openssl-dev
+RUN apt install -y libffi-dev libssl-dev
 
 # psycopg2 dependencies + build-dep
-RUN apk add postgresql-dev
+RUN apt install -y libpq-dev
 
 # pillow dependencies
-RUN apk add --no-cache jpeg-dev zlib-dev
+RUN apt install -y libjpeg-dev zlib1g-dev
+
+RUN apt install -y python3-pip
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 
 COPY ./requirements-dev.txt /requirements-dev.txt
 COPY ./requirements.txt /requirements.txt
@@ -24,5 +35,5 @@ RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
 
-RUN adduser -D user
+RUN useradd -ms /bin/bash user
 USER user
