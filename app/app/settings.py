@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 INTERNAL_IPS = ['127.0.0.1']
 
-ALLOWED_HOSTS = ['hero.geo4cities.com', 'peregrine-recipe-app-api.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['hero.geo4cities.com', 'peregrine-recipe-app-api.herokuapp.com', 'localhost', '127.0.0.1', '192.168.10.199']
 
 # Application definition
 # MANDATORY: debug_toolbar MUST BE last one
@@ -206,7 +206,8 @@ AUTHENTICATION_BACKENDS = (
 # SQLite	    django.db.backends.sqlite3	                sqlite:///PATH
 # SpatiaLite	django.contrib.gis.db.backends.spatialite	spatialite:///PATH
 
-DATABASE_DEV = 'postgis://' + config('DB_USER') + ':' + config('DB_PASSWORD') + '@127.0.0.1:5432/' + config('DB_NAME')
+DATABASE_IP = config('DATABASE_IP', default='127.0.0.1')
+DATABASE_DEV = 'postgres://' + config('DB_USER') + ':' + config('DB_PASSWORD') + '@' + DATABASE_IP + ':5432/' + config('DB_NAME')
 DATABASES = {
     'default': config('DATABASE_URL', default=DATABASE_DEV, cast=dburl),
 }

@@ -16,7 +16,7 @@ RUN apt install -y libgeos-dev libproj-dev gdal-bin
 RUN apt install -y libffi-dev libssl-dev
 
 # psycopg2 dependencies + build-dep
-RUN apt install -y libpq-dev
+RUN apt install -y libpq-dev postgresql-client
 
 # pillow dependencies
 RUN apt install -y libjpeg-dev zlib1g-dev
