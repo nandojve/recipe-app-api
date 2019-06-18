@@ -128,6 +128,9 @@ INSTALLED_APPS = [
     'leaflet',
     'bootstrapform',
 
+    #
+    'core',
+
     # Debug
     'debug_toolbar',
 ]
@@ -137,6 +140,7 @@ INSTALLED_APPS = [
 # http://localhost:8000/admin/sites/site/1/change/
 SITE_ID = 1
 # AUTH_USER_MODEL = 'allauthdemo_auth.User'
+AUTH_USER_MODEL = 'core.User'
 # LOGIN_REDIRECT_URL = '/person/'
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # ACCOUNT_USERNAME_REQUIRED = True
