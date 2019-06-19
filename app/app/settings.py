@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
 
+    # Django Rest Framework
+    'rest_framework',
+    'rest_framework.authtoken',
+
     # Social Auth
     'allauth',
     'allauth.account',
@@ -130,6 +134,7 @@ INSTALLED_APPS = [
 
     #
     'core',
+    'user',
 
     # Debug
     'debug_toolbar',
