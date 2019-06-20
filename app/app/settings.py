@@ -135,6 +135,7 @@ INSTALLED_APPS = [
     #
     'core',
     'user',
+    'recipe',
 
     # Debug
     'debug_toolbar',
