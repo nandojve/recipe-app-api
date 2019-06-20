@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
 
     # Django Rest Framework
+    'rest_framework_swagger',
     'rest_framework',
     'rest_framework.authtoken',
 
