@@ -209,6 +209,48 @@ class PrivateRecipeApiTests(TestCase):
         tags = recipe.tags.all()
         self.assertEqual(len(tags), 0)
 
+    def test_filter_recipes_by_tags(self):
+        """Test returning recipes with specific tags"""
+        recipe1 = sample_recipe(user=self.user, title='Thai vegetable Curry')
+        recipe2 = sample_recipe(user=self.user, title='Aubergine with tahini')
+        recipe3 = sample_recipe(user=self.user, title='Fish and chips')
+        tag1 = sample_tag(user=self.user, name='Vegan')
+        tag2 = sample_tag(user=self.user, name='Vegetarian')
+        recipe1.tags.add(tag1.id)
+        recipe2.tags.add(tag2.id)
+        serialize1 = RecipeSerializer(recipe1)
+        serialize2 = RecipeSerializer(recipe2)
+        serialize3 = RecipeSerializer(recipe3)
+
+        res = self.client.get(
+            RECIPES_URLS,
+            {'tags': f'{tag1.id}, {tag2.id}'}
+        )
+        self.assertIn(serialize1.data, res.data)
+        self.assertIn(serialize2.data, res.data)
+        self.assertNotIn(serialize3.data, res.data)
+
+    def test_filter_recipes_by_ingredients(self):
+        """Test returning recipes with specific ingredients"""
+        recipe1 = sample_recipe(user=self.user, title='Posh beans on toast')
+        recipe2 = sample_recipe(user=self.user, title='Chicken cacciatore')
+        recipe3 = sample_recipe(user=self.user, title='Stake and mushrooms')
+        ingredient1 = sample_ingredient(user=self.user, name='Feta cheese')
+        ingredient2 = sample_ingredient(user=self.user, name='Chicken')
+        recipe1.ingredients.add(ingredient1.id)
+        recipe2.ingredients.add(ingredient2.id)
+        serialize1 = RecipeSerializer(recipe1)
+        serialize2 = RecipeSerializer(recipe2)
+        serialize3 = RecipeSerializer(recipe3)
+
+        res = self.client.get(
+            RECIPES_URLS,
+            {'ingredients': f'{ingredient1.id}, {ingredient2.id}'}
+        )
+        self.assertIn(serialize1.data, res.data)
+        self.assertIn(serialize2.data, res.data)
+        self.assertNotIn(serialize3.data, res.data)
+
 
 class RecipeImageUploadsTests(TestCase):
 
