@@ -28,6 +28,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 INTERNAL_IPS = ['127.0.0.1']
 
 ALLOWED_HOSTS = ['hero.geo4cities.com', 'peregrine-recipe-app-api.herokuapp.com', 'localhost', '127.0.0.1', '192.168.10.199']
+#ALLOWED_HOSTS = ['myserver.com', '127.0.0.1']
 
 # Application definition
 # MANDATORY: debug_toolbar MUST BE last one
