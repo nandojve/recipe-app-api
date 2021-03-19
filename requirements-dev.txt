@@ -11,7 +11,7 @@ django-allauth==0.39.1
 django-bootstrap-form==3.4
 django-debug-toolbar==1.11
 django-leaflet==0.24.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 idna==2.8
 ndg-httpsclient==0.5.1
 oauthlib==3.0.1
